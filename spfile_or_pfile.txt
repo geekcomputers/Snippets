@@ -1,0 +1,21 @@
+This is how to determine if the database was started with an SPFILE or a PFILE.
+
+SELECT instance_name, DECODE(value, NULL, 'PFILE','SPFILE') "Init File Type"
+FROM sys.v_$parameter, v$instance
+WHERE name  = 'spfile';
+
+Or you can use the commands below as you can see the first one does not use a spfile whereas the second one does. 
+
+SQL> show parameter spfile;
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+spfile                               string
+
+SQL> show parameter spfile
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+spfile                               string      /opt/oracle/home/10gHome/dbs/spfileRIMSTEST.ora
+
+SQL>
