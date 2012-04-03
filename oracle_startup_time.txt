@@ -1,0 +1,17 @@
+This will show you when the database was started.
+
+SQL> select to_char(startup_time, 'DD-MON-YYYY HH24:MI:SS') from v$instance;
+
+TO_CHAR(STARTUP_TIME
+--------------------
+24-FEB-2012 23:59:11
+
+This will show you when the database was started and how long the database has been running
+
+SELECT to_char(startup_time,'DD-MON-YYYY HH24:MI:SS') "DB Startup Time",
+to_char(round((sysdate-startup_time)*24*60)) UP_TIME_MINUTES
+FROM   sys.v_$instance;
+
+DB Startup Time      UP_TIME_MINUTES
+-------------------- ----------------------------------------
+29-FEB-2012 11:58:50 10426
